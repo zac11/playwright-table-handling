@@ -3,9 +3,10 @@ import { Page, Locator, Browser, test, chromium } from "@playwright/test";
 
 test.describe(`Launch the browser and handle table data`, async () => {
 
+    const baseURL = `https://datatables.net/extensions/select/examples/initialisation/checkbox.html`
 
     test.beforeEach(async ({ page }) => {
-        await page.goto(`/extensions/select/examples/initialisation/checkbox.html`)
+        await page.goto(baseURL);
         await page.waitForSelector(`table#example`, {
             state: 'visible'
         });
@@ -55,7 +56,7 @@ test.describe(`Launch the browser and handle table data`, async () => {
             console.log(text);
         });
     });
-    
+
 
     test(`Print the name of people who have office as Tokyo`, async({page})=>{
         const search_tokyo = await page.locator(`input[type='search']`);
@@ -65,7 +66,7 @@ test.describe(`Launch the browser and handle table data`, async () => {
         await row.forEach((text)=>{
             console.log(text);
         })
-    })
+    });
 
 
 });
