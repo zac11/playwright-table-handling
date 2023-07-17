@@ -26,11 +26,16 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
      baseURL: 'https://datatables.net',
-     headless: false,
+     headless: true,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    video:{
+      mode: 'on-first-retry',
+      size: { width: 1200, height: 1000 }
+    }
   },
+
 
   /* Configure projects for major browsers */
   projects: [
