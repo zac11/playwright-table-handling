@@ -41,6 +41,7 @@ test.describe(`Launch the browser and handle table data`, async () => {
             })
 
         }
+        console.log(outData);
         
     });
 

@@ -23,6 +23,7 @@ test.describe(`Launch the browser and handle table data`, async () => {
 
     test(`Get all the columns for each row`, async ({ page }) => {
         const allRows = await page.locator(`table#example tbody tr`).all();
+        await page.waitForTimeout(1000);
         allRows.forEach(async (rows) => {
             console.log(await rows.locator(`td`).count());
         });
