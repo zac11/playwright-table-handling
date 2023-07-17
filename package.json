@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Sample code snippets for handling tables using Playwright",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npm run test"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
