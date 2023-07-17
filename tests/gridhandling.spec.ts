@@ -15,15 +15,20 @@ test.describe(`Launch the browser and handle table data`, async () => {
 
 
     test(`Show all the orders of the first row`, async ({ page }) => {
-        const parenttable = await page.locator(`tbody#form\\:dt-products_data.ui-datatable-data.ui-widget-content`).locator(`tr`);
-        const elementCount = await parenttable.count();
-
-        for(let i=0;i< elementCount;i+=2){
-            const clickeleme = await parenttable.nth(i).locator(`td`).nth(1).getByLabel(`Toggle Row`);
-            await clickeleme.click();
-            await page.waitForTimeout(3000);
+        const tr = await page.locator('tbody.ui-datatable-data.ui-widget-content > tr.ui-datatable-selectable').all()
+        const outData = []
+        for (let i of tr) {
+            const currentRow = i.getByRole('gridcell').nth(2)
+            const currentName = await currentRow.innerText()
+            await i.getByRole('gridcell').nth(1).click()
+            await page.waitForTimeout(2000)
+            const subTableData = await page.locator(`xpath=//h5[text()='Orders for ${currentName}'] >> css=+div tbody.ui-widget-content`).locator(`tr`).allInnerTexts();
+            outData.push({
+                'name': currentName,
+                'subTableText': subTableData
+            })
         }
-        
+        console.log(outData)
 
     
 
